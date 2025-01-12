@@ -12,7 +12,7 @@ template: comments.html
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Primary Meta Tags -->
-  <meta name="title" content="Intempus - Teddy Warner">
+  <meta name="title" content="Intempus">
   <meta name="description" content="Giving agents a temporal understanding through human physiological data.">
   <meta name="keywords" content="fMRI, artificial intelligence, temporal cognition, machine learning, neural networks, Vision Transformer, world models, deep learning, neuroimaging, learning stages, physiological state data, temporal processing, BOLD signal, cognitive science, neural activation patterns">
   <meta name="author" content="Teddy Warner">
@@ -21,7 +21,7 @@ template: comments.html
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://intempus.org/">
-  <meta property="og:title" content="Intempus - Teddy Warner">
+  <meta property="og:title" content="Intempus">
   <meta property="og:description" content="Giving agents a temporal understanding through human physiological data.">
   <meta property="og:image" content="https://intempus.org/assets/images/thumb.png">
   <meta property="og:image:type" content="image/png">
@@ -31,7 +31,7 @@ template: comments.html
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://intempus.org/">
-  <meta property="twitter:title" content="Intempus - Teddy Warner">
+  <meta property="twitter:title" content="Intempus">
   <meta property="twitter:description" content="Giving agents a temporal understanding through human physiological data.">
   <meta property="twitter:image" content="https://intempus.org/assets/images/thumb.png">
 
