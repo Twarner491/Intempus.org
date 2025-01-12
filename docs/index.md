@@ -23,7 +23,7 @@ template: comments.html
   <meta property="og:url" content="https://intempus.org/">
   <meta property="og:title" content="Intempus - Teddy Warner">
   <meta property="og:description" content="Giving agents a temporal understanding through human physiological data.">
-  <meta property="og:image" content="https://intempus.org/assets/images/hero.png">
+  <meta property="og:image" content="https://intempus.org/assets/images/thumb.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -33,7 +33,7 @@ template: comments.html
   <meta property="twitter:url" content="https://intempus.org/">
   <meta property="twitter:title" content="Intempus - Teddy Warner">
   <meta property="twitter:description" content="Giving agents a temporal understanding through human physiological data.">
-  <meta property="twitter:image" content="https://intempus.org/assets/images/hero.png">
+  <meta property="twitter:image" content="https://intempus.org/assets/images/thumb.png">
 
   <!-- Existing resource links -->
   <script src="https://kit.fontawesome.com/79ff35ecec.js" crossorigin="anonymous"></script>
