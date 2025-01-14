@@ -204,7 +204,7 @@ Collecting physiological data from humans is hard, but at scale, it is even hard
 
 The proposed architecture represents a novel approach to integrating physiological data into reinforcement learning systems. By incorporating human physiological responses, we aim to create AI systems that can develop a more nuanced, human-like understanding of temporal relationships. The architecture consists of three distinct but interconnected spaces that work together to process both external and internal states.
 
-<center style="opacity:80%;">
+<center style="opacity:90%;">
 
  ![](../assets/images/rldlight.png#only-light){width="50%" alt="Diagram showing RL setup in light theme"}
  ![](../assets/images/rlddark.png#only-dark){width="50%" alt="Diagram showing RL setup in dark theme"}
