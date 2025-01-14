@@ -187,48 +187,6 @@ Collecting physiological data from humans is hard, but at scale, it is even hard
 - Then need to make a bunch of these devices
 - Then need to pay people to collect data with said devices for a select window of time
 
-#### Methods
-
-Physiological changes should simultaneously govern rewards and be given to the agent as a state. Correlation may then be drawn between an agent's actions and physiological state changes.
-
-<center style="opacity:80%;">
-
- ![](../assets/images/rldlight.png#only-light){width="50%" alt="Diagram showing RL setup in light theme"}
- ![](../assets/images/rlddark.png#only-dark){width="50%" alt="Diagram showing RL setup in dark theme"}
-
-</center>
-
-This calls for a few things ...
-
-1. An ["Interoception Model"](#interoception-model), that is, a neural netowrk which predicts a physlogical change given an external input.
-
-    \begin{align*}
-    \text{Input: } \sigma_t &= \text{state at time } t \\
-    \text{Output: } \iota_t &= \text{internal state at time } t \\
-    \end{align*}
-
-2. A ["Temporal Model"](#temporal-model), a model to adjust an agent's "perception of time" (that is with a scalar), in accordance with $\iota_t$.
-
-    \begin{align*}
-    \text{Input: } &\begin{cases}
-    \iota_t &= \text{internal state at time } t \\
-    \tau_{t-1} &= \text{previous temporal scaling}
-    \end{cases} \\
-    \text{Output: } &\tau_t = \text{temporal scaling at time } t
-    \end{align*}
-
-3. A ["Reinforcement Gymnasium"](#reinforcement-gymnasium). An agent seeks to maximize rewards. Their actions should be a product of their internal and external states, as well as previous actions/rewards.
-
-    \begin{align*}
-    \text{Input: } &\begin{cases}
-    \iota_t &= \text{interoception at time } t \\
-    s_t &= \text{state at time } t \\
-    a_{t-1} &= \text{previous action} \\
-    \tau_t &= \text{temporal scaling at time } t
-    \end{cases} \\
-    \text{Output: } &a_t = \text{action at time } t
-    \end{align*}
-
 #### Timeline
 
 - [x] Utlize publically available physiological data to asses such data's ability to provide a window into temporal understanding
@@ -241,6 +199,100 @@ This calls for a few things ...
 - [ ] Collect data from people at scale
 - [ ] Retrain the [Interoception Model](#interoception-model) with more, and more granular data
 - [ ] Retrain the agents with this superior $\iota_t$
+
+### Architecture
+
+The proposed architecture represents a novel approach to integrating physiological data into reinforcement learning systems. By incorporating human physiological responses, we aim to create AI systems that can develop a more nuanced, human-like understanding of temporal relationships. The architecture consists of three distinct but interconnected spaces that work together to process both external and internal states.
+
+<center style="opacity:80%;">
+
+ ![](../assets/images/rldlight.png#only-light){width="50%" alt="Diagram showing RL setup in light theme"}
+ ![](../assets/images/rlddark.png#only-dark){width="50%" alt="Diagram showing RL setup in dark theme"}
+
+</center>
+
+This calls for a few things ...
+
+1. Task Space (External World)
+    The foundation of our architecture builds upon traditional reinforcement learning environments but extends them to incorporate physiological measurements. This space represents the interface between the agent and its environment:
+
+    \begin{align*}
+    \text{States: } & \sigma_t \in \mathcal{S} \text{ (external observations)} \\
+    \text{Actions: } & a_t \in \mathcal{A} \text{ (agent interventions)} \\
+    \text{Rewards: } & r_t \in \mathbb{R} \text{ (environmental feedback)}
+    \end{align*}
+
+    The key innovation in the task space is the integration of physiological measurements into the state and reward signals. States now include both environmental conditions and bodily responses, while rewards incorporate both task success and physiological homeostasis. This dual nature of the reward signal encourages the agent to maintain beneficial internal states while pursuing external goals.
+
+2. Neural Space (Physiological Domain)
+    The neural space processes and represents physiological data through adaptive neural networks. This space is characterized by:
+
+    \begin{align*}
+    \text{Internal State: } & \iota_t \in \mathcal{I} \text{ (physiological measures)} \\
+    \text{Hidden State: } & h_t \in \mathcal{H} \text{ (neural representations)} \\
+    \text{Time Constants: } & \tau_i(\iota_t) \text{ (layer-specific dynamics)}
+    \end{align*}
+
+    The neural space employs liquid time neural networks, where processing speeds adapt based on physiological state. This creates a dynamic system where internal state influences both what information is processed and how quickly that processing occurs. The time constants τᵢ vary across network layers, allowing different aspects of the physiological state to be processed at different rates.
+
+3. Conceptual Space (Integration)
+    The conceptual space serves as the bridge between external observations and internal states, facilitating decision-making that accounts for both domains:
+
+    \begin{align*}
+    \text{Temporal Scaling: } & \tau_t \in \mathbb{R}^+ \text{ (time perception)} \\
+    \text{Value Function: } & V(s,\iota,\tau) \text{ (expected returns)} \\
+    \text{Policy: } & \pi(a_t|s_t,\iota_t,\tau_t) \text{ (action distribution)}
+    \end{align*}
+
+    This space implements the core hypothesis that temporal understanding emerges from physiological state. The temporal scaling factor τₜ modulates how the agent perceives and values time based on its internal state, affecting both value estimation and action selection.
+
+#### Core Components
+
+The architecture is implemented through three primary components, each handling a specific aspect of the system's temporal-physiological integration.
+
+1. Interoception Model
+    The interoception model serves as the system's internal sense-making mechanism, learning to predict and interpret physiological responses to external stimuli. It implements a sophisticated form of internal modeling:
+
+    \begin{align*}
+    \text{State Dynamics: } & \frac{dh_t}{dt} = \frac{1}{\tau(\iota_t)} \cdot (f(h_t, \sigma_t, \iota_t) - h_t) \\
+    \text{Output: } & \iota_t = g(h_t) \\
+    \text{Time Constant: } & \tau(\iota_t) = \tau_{base} \cdot \text{sigmoid}(W_\tau\iota_t)
+    \end{align*}
+
+    The model employs liquid time constants that adapt based on physiological state, creating a dynamic feedback loop. The processing speed itself becomes a function of the internal state, allowing the system to accelerate or decelerate its processing based on physiological conditions. This mirrors how humans process information differently under various physiological states (e.g., stress vs. relaxation).
+
+    Key features include:
+    
+    - Adaptive processing speeds that respond to physiological state
+    - Continuous update of internal representations
+    - Bidirectional interaction between processing speed and state
+
+2. Temporal Model
+    The temporal model translates physiological states into temporal perception, implementing our key hypothesis that internal state mediates time understanding:
+
+    \begin{align*}
+    \text{Time Scaling: } & \tau_t = f_\tau(\iota_t, \tau_{t-1}) \\
+    \text{Adaptive Step: } & \Delta t(\iota_t) = \Delta t_{min} \cdot \text{sigmoid}(W_\Delta\iota_t) \\
+    \text{Layer Dynamics: } & \tau_i(\iota_t) = \tau_{base,i} \cdot \text{sigmoid}(W_{\tau_i}\iota_t)
+    \end{align*}
+
+    The model uses a hierarchical structure with multiple timescales, each adapting to physiological state. This architecture allows for:
+
+    - Rapid responses to immediate physiological changes
+    - Slower adaptation to sustained conditions
+    - Integration of multiple temporal scales
+    - Context-dependent temporal processing
+
+3. Reinforcement Learning Framework
+    The RL framework unifies the previous components into a coherent learning system that can act based on both external observations and internal state:
+
+    \begin{align*}
+    \text{State Space: } & s_t = [\sigma_t, \iota_t, \tau_t] \\
+    \text{Value Function: } & V(s,\iota,\tau) = \mathbb{E}\left[\sum_{k=0}^{\infty} \tau_k \gamma^k r_{t+k}\right] \\
+    \text{Policy: } & \pi(a_t|s_t,\iota_t,\tau_t) = \frac{\exp(Q(s_t,a_t,\iota_t,\tau_t))}{\sum_{a'} \exp(Q(s_t,a',\iota_t,\tau_t))}
+    \end{align*}
+
+    The key innovation is that both value estimation and policy selection are conditioned on physiological state and temporal scaling. This allows the agent's decision-making to adapt based on its internal condition and time perception.
 
 ## Interoception Model
 
