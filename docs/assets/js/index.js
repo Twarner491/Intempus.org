@@ -103,6 +103,10 @@ function toggleTheme() {
   const currentScheme = body.getAttribute('data-md-color-scheme');
   const newScheme = currentScheme === 'default' ? 'slate' : 'default';
   body.setAttribute('data-md-color-scheme', newScheme);
+
+  document.querySelectorAll('iframe').forEach(iframe => {
+    iframe.contentWindow.postMessage('theme-changed', '*');
+  });
   
   // Store the preference
   localStorage.setItem('theme', newScheme);
@@ -113,3 +117,58 @@ document.addEventListener('DOMContentLoaded', () => {
   const storedTheme = localStorage.getItem('theme') || 'default';
   document.querySelector('body').setAttribute('data-md-color-scheme', storedTheme);
 });
+
+// Function to handle dark mode for plots
+function updatePlotsTheme() {
+    const isDarkMode = document.documentElement.getAttribute('data-md-color-scheme') === 'slate';
+    const plots = document.querySelectorAll('.plot-iframe');
+    
+    plots.forEach(plot => {
+        // Send message to iframe about theme change
+        plot.contentWindow.postMessage({
+            type: 'theme-change',
+            isDarkMode: isDarkMode
+        }, '*');
+    });
+}
+
+// Initial call
+setTimeout(updatePlotsTheme, 100);
+
+// Watch for theme changes
+const observer = new MutationObserver(() => {
+    updatePlotsTheme();
+});
+
+observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-md-color-scheme']
+});
+
+// Function to update a single plot's colors
+function updateSinglePlot(plotWindow, isDarkMode) {
+    if (plotWindow && plotWindow.Plotly) {
+        const layout_update = {
+            paper_bgcolor: isDarkMode ? '#212226' : '#ffffff',
+            plot_bgcolor: isDarkMode ? '#212226' : '#ffffff',
+            font: { color: isDarkMode ? '#ffffff' : '#000000' },
+            xaxis: {
+                gridcolor: isDarkMode ? '#3b3b3b' : '#e5e5e5',
+                zerolinecolor: isDarkMode ? '#3b3b3b' : '#e5e5e5',
+                color: isDarkMode ? '#ffffff' : '#000000'
+            },
+            yaxis: {
+                gridcolor: isDarkMode ? '#3b3b3b' : '#e5e5e5',
+                zerolinecolor: isDarkMode ? '#3b3b3b' : '#e5e5e5',
+                color: isDarkMode ? '#ffffff' : '#000000'
+            }
+        };
+        
+        try {
+            plotWindow.Plotly.relayout('plot', layout_update);
+        } catch (e) {
+            console.log('Retrying plot update...');
+            setTimeout(() => updateSinglePlot(plotWindow, isDarkMode), 100);
+        }
+    }
+}
