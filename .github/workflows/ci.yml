@@ -24,4 +24,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REQUIREMENTS: ../../requirements.txt
-          CUSTOM_DOMAIN: teddywarner.org
+          CUSTOM_DOMAIN: intempus.org
