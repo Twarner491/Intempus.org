@@ -127,9 +127,9 @@ If we acknowledge that current AI systems lack a subjective understanding of tim
 
 Data collected from human subjects could provide a window into how humans subjectively experience time, potentially leading to more sophisticated and human-like temporal reasoning in AI systems.
 
-#### Questions
+### Questions
 
-<h5 style="text-transform: none;">Do physiological states relate to man's perception of time and space?</h5>
+#### Do physiological states relate to man's perception of time and space?
 
 Yes, physiological states may be able to provide a window into man's subjective experience of time. But what physiological states?
 
@@ -140,7 +140,7 @@ Yes, physiological states may be able to provide a window into man's subjective 
 
 It's important to note that the relationship between physiological states and time perception is complex and influenced by various factors, including attention, emotion, and cognitive load [^3] [^8].
 
-<h5 style="text-transform: none;">Why has no one done this?</h5>
+#### Why has no one done this?
 
 When my hypothesis first came to me, I believed I had to be naive to some particular reason our pipeline is robot -> simulator -> robot and not human -> simulator -> robot. It was simultaneously a relief and a pain in the ass to not find a specific reason on the first page of Google.
 
