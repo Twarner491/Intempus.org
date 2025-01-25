@@ -1,4 +1,30 @@
+// Theme initialization - executed immediately
+const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'slate' : 'default');
+document.documentElement.setAttribute('data-md-color-scheme', storedTheme);
+document.body?.setAttribute('data-md-color-scheme', storedTheme);
+
+// Rest of the code wrapped in DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function() {
+  // Optimize navigation by removing history state handling
+  history.scrollRestoration = 'manual';
+
+  // Preload all navigation links immediately
+  const links = document.querySelectorAll('a[href^="/"]:not([href*="#"])');
+  const preloadedUrls = new Set();
+
+  links.forEach(link => {
+    if (link.href && 
+        link.href.startsWith(window.location.origin) && 
+        !preloadedUrls.has(link.href)) {
+      const preloadLink = document.createElement('link');
+      preloadLink.rel = 'prefetch';
+      preloadLink.as = 'document';
+      preloadLink.href = link.href;
+      document.head.appendChild(preloadLink);
+      preloadedUrls.add(link.href);
+    }
+  });
+
   let lastScrollTop = 0;
   let ticking = false;
 
@@ -46,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
     observer.observe(el);
   });
 
-  const scrollThreshold = 100; // Adjust this value to control when the header shrinks
+  const scrollThreshold = 100;
 
   window.addEventListener('scroll', function() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -95,28 +121,21 @@ function leftrevoff() {
 
 leftrevon();
 
-document.querySelector('.abtbtn').addEventListener('mouseenter', leftrevoff);
-document.querySelector('.abtbtn').addEventListener('mouseleave', leftrevon);
+document.querySelector('.abtbtn')?.addEventListener('mouseenter', leftrevoff);
+document.querySelector('.abtbtn')?.addEventListener('mouseleave', leftrevon);
 
 function toggleTheme() {
-  const body = document.querySelector('body');
-  const currentScheme = body.getAttribute('data-md-color-scheme');
+  const currentScheme = document.documentElement.getAttribute('data-md-color-scheme');
   const newScheme = currentScheme === 'default' ? 'slate' : 'default';
-  body.setAttribute('data-md-color-scheme', newScheme);
+  
+  document.documentElement.setAttribute('data-md-color-scheme', newScheme);
+  document.body.setAttribute('data-md-color-scheme', newScheme);
+  localStorage.setItem('theme', newScheme);
 
   document.querySelectorAll('iframe').forEach(iframe => {
     iframe.contentWindow.postMessage('theme-changed', '*');
   });
-  
-  // Store the preference
-  localStorage.setItem('theme', newScheme);
 }
-
-// Initialize theme from stored preference
-document.addEventListener('DOMContentLoaded', () => {
-  const storedTheme = localStorage.getItem('theme') || 'default';
-  document.querySelector('body').setAttribute('data-md-color-scheme', storedTheme);
-});
 
 // Function to handle dark mode for plots
 function updatePlotsTheme() {

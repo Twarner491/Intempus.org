@@ -485,11 +485,11 @@
 .footer {
   width: 100%;
   margin-top: 5em;
-  max-width: 52rem;
+  max-width: 50rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1.6rem;
+  padding-right: 2.6rem;
   box-sizing: border-box;
   text-align: left;
 }
@@ -570,6 +570,24 @@
   }
   .copyright {
     font-size: 0.7em;
+  }
+}
+
+@media (max-width: 1025px) { /* Laptop */
+  .main-navigation a {
+    font-size: 1.1em;
+  }
+  body {
+    font-size: 0.9em;
+  }
+  .socialpar {
+    font-size: 0.8em;
+  }
+  .copyright {
+    font-size: 0.7em;
+  }
+  .footer {
+    margin-left: 1rem;
   }
 }
 
@@ -753,7 +771,7 @@
 }
 
 .md-content {
-  max-width: 65rem;
+  max-width: 52rem;
   margin: 0 auto;
 }
 
@@ -763,4 +781,33 @@
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+.navItem {
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navItem::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--md-default-fg-color--light);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.15s ease-out;
+}
+
+.navItem:hover::after {
+  transform: scaleX(1);
+}
+
+.navItem.active::after {
+  transform: scaleX(1);
+  height: 1.5px;
+  background-color: var(--md-default-fg-color);  /* Darker color for active state */
 }
