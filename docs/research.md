@@ -77,7 +77,7 @@ template: comments.html
 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1em;">
   <div style="padding-left: 1em;">
     <h1 style="margin-bottom: 0;">Intempus</h1>
-    <p style="margin-top: 0.15em; margin-left: -0.9em; font-family: 'JetBrains Mono'; font-size: 0.9em; opacity: 0.7;"><a class="navItem" href="/" style="color: inherit; text-decoration: none;">Home</a> &nbsp;<a class="navItem active" href="/research" style="color: inherit; text-decoration: none;">Research</a> &nbsp;<a class="navItem" href="/support" style="color: inherit; text-decoration: none;">Support</a></p>
+    <p style="margin-top: 0.15em; margin-left: -0.8em; font-family: 'JetBrains Mono'; font-size: 0.9em; opacity: 0.7;"><a class="navItem" href="/" style="color: inherit; text-decoration: none;">Home</a> &nbsp;<a class="navItem active" href="/research" style="color: inherit; text-decoration: none;">Research</a> &nbsp;<a class="navItem" href="/support" style="color: inherit; text-decoration: none;">Support</a></p>
   </div>
   <div class="theme-toggle">
     <button class="md-header__button md-icon" onclick="toggleTheme()">
@@ -90,6 +90,8 @@ template: comments.html
 <div style="margin:-20px"></div>
 
 ---
+
+<div style="margin:-30px"></div>
 
 ## Introduction
 
