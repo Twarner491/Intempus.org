@@ -77,20 +77,21 @@ template: comments.html
 ---
 
 <div style="max-width: 615px; margin-left: 15px;">
-  <p>
-    Intempus is equipping agents with an understanding of time and space, so the autonomous machines of the future may "think" like a human can.
-  </p>
 
-  <p>
-    We believe that world models cannot truly gain a comprehensive temporal understanding based solely on data collected from robots or purely external observations. A human-like understanding of time will only arise through the collection and analysis of human physological data.
-  </p>
+ <p>
+  Intempus is equipping agents with an understanding of time and space so that the autonomous machines of the future may "think" like humans.
+ </p>
 
-  <p>
-    Our work is still in its inital stages with more information soon to come! Check out our <a href="/research" style="color: inherit; text-decoration: underline;">research</a> page for current progress. If you are interested in supporting us, please reach out to <a target="_blank" href="mailto:teddy@intempus.org" style="color: inherit; text-decoration: underline;">teddy@intempus.org</a>.
-  </p>
+ <p>
+  We believe that world models cannot truly gain a comprehensive temporal understanding based solely on data collected from robots or purely external observations. A human-like understanding of time will only arise through the collection and analysis of human physiological data.
+ </p>
 
-  <p>
-    Follow along on our 𝕏/Twitter <a target="_blank" href="https://x.com/IntempusInc" style="color: inherit; text-decoration: underline;">@IntempusInc</a>.
-  </p>
+ <p>
+  Our work is still in its initial stages with more information soon! Check out our <a href="/research" style="color: inherit; text-decoration: underline;">research</a> page for current progress. If you are interested in supporting us, please reach out to <a target="_blank" href="mailto:teddy@intempus.org" style="color: inherit; text-decoration: underline;">teddy@intempus.org</a>.
+ </p>
+
+ <p>
+  Follow along on our 𝕏/Twitter <a target="_blank" href="https://x.com/IntempusInc" style="color: inherit; text-decoration: underline;">@IntempusInc</a>.
+ </p>
 
 </div>

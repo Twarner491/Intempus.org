@@ -78,16 +78,17 @@ template: comments.html
 ---
 
 <div style="max-width: 615px; margin-left: 15px;">
-  <p>
-    Intempus is equipping agents with an understanding of time and space, so the autonomous machines of the future may "think" like a human can.
-  </p>
 
-  <p>
-    If you're intrested in working on / supporting / investing in the future of autonomous machines, contact us at <a target="_blank" href="mailto:teddy@intempus.org" style="color: inherit; text-decoration: underline;">teddy@intempus.org</a>.
-  </p>
+ <p>
+  Intempus is equipping agents with an understanding of time and space, so the autonomous machines of the future may "think" like a human can.
+ </p>
 
-  <p>
-    Follow along on our 𝕏/Twitter <a target="_blank" href="https://x.com/IntempusInc" style="color: inherit; text-decoration: underline;">@IntempusInc</a>.
-  </p>
+ <p>
+  If you're interested in working on / supporting / investing in the future of autonomous machines, contact us at <a target="_blank" href="mailto:teddy@intempus.org" style="color: inherit; text-decoration: underline;">teddy@intempus.org</a>.
+ </p>
+
+ <p>
+  Follow along on our 𝕏/Twitter <a target="_blank" href="https://x.com/IntempusInc" style="color: inherit; text-decoration: underline;">@IntempusInc</a>.
+ </p>
 
 </div>
