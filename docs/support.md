@@ -83,8 +83,17 @@ template: comments.html
   Intempus is equipping agents with an understanding of time and space, so the autonomous machines of the future may "think" like a human can.
  </p>
 
+  <p>
+    We are actively recruiting for our team!
+ </p>
+
+ <ul style="list-style-type: '- '; margin-left: -0.25em; margin-top: -0.25em;">
+    <li style="margin-bottom: 0.25em;">Machine Learning Researchers</li>
+    <li style="margin-bottom: 0.25em;">Hardware Engineers</li>
+</ul>
+
  <p>
-  If you're interested in working on / supporting / investing in the future of autonomous machines, contact us at <a target="_blank" href="mailto:teddy@intempus.org" style="color: inherit; text-decoration: underline;">teddy@intempus.org</a>.
+  If you're interested in working on the future of autonomous <br>machines, contact us at <a target="_blank" href="mailto:teddy@intempus.org" style="color: inherit; text-decoration: underline;">teddy@intempus.org</a>. 
  </p>
 
  <p>

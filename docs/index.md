@@ -87,7 +87,7 @@ template: comments.html
  </p>
 
  <p>
-  Our work is still in its initial stages with more information soon! Check out our <a href="/research" style="color: inherit; text-decoration: underline;">research</a> page for current progress. If you are interested in supporting us, please reach out to <a target="_blank" href="mailto:teddy@intempus.org" style="color: inherit; text-decoration: underline;">teddy@intempus.org</a>.
+  Our work is still in its initial stages with more information soon! Check out our <a href="/research" style="color: inherit; text-decoration: underline;">research</a> page for current progress. If you are interested in working with us, please reach out to <a target="_blank" href="mailto:teddy@intempus.org" style="color: inherit; text-decoration: underline;">teddy@intempus.org</a>.
  </p>
 
  <p>
